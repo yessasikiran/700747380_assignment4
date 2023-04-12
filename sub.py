@@ -27,3 +27,13 @@ response = sns.subscribe(
 
 # Print the subscription ARN
 print('Subscription ARN:', response['SubscriptionArn'])
+
+# Publish a message to the topic
+response = sns.publish(
+    TopicArn=topic_arn,
+    Message='Hello, world!',
+    Subject='Test message',
+)
+
+# Print the response
+print(response)
