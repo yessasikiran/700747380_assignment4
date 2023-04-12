@@ -5,7 +5,7 @@ sns = boto3.client('sns')
 
 # Create a new SNS topic
 response = sns.create_topic(
-    Name='My-12345845858'
+    Name='new_topic_1'
 )
 
 # Get the ARN of the new topic
