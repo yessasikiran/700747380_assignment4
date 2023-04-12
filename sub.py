@@ -1,11 +1,18 @@
 import boto3
+import configparser
+
+# Read the topic name and email address from the config file
+config = configparser.ConfigParser()
+config.read('config.ini')
+topic_name = config.get('SNS', 'TopicName')
+email_address = config.get('SNS', 'EmailAddress')
 
 # Create an SNS client
 sns = boto3.client('sns')
 
 # Create a new SNS topic
 response = sns.create_topic(
-    Name='new_topic_1'
+    Name=topic_name
 )
 
 # Get the ARN of the new topic
@@ -15,7 +22,7 @@ topic_arn = response['TopicArn']
 response = sns.subscribe(
     TopicArn=topic_arn,
     Protocol='email',
-    Endpoint='yespvin@gmail.com'
+    Endpoint=email_address
 )
 
 # Print the subscription ARN
